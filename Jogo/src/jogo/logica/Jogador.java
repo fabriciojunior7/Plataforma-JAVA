@@ -19,8 +19,8 @@ public class Jogador extends Entidade {
     public Jogador(int x, int y){
         super(x*Setup.LADO, y*Setup.LADO, Setup.LADO , Setup.LADO, Color.green, true);
         this.ad = new boolean[]{false, false};
-        this.velocidadeMaxX = 4;
-        this.velocidadeMaxY = 12;
+        this.velocidadeMaxX = 3;
+        this.velocidadeMaxY = 10;
         this.velocidadeX = 0;
         this.velocidadeY = 0;
         this.forcaPulo = -6.2f;
@@ -115,7 +115,21 @@ public class Jogador extends Entidade {
         //this.caindo = true;
     }
 
-    public void colidirBloco(Entidade e){
+    public void colidirComEntidade(Entidade e){
+        if(e.getFisica()){this.colidirFisica(e);}
+        else if(e instanceof Chave){this.pegarChave((Chave) e);}
+        else if(e instanceof Porta){this.entrarPorta((Porta) e);}
+    }
+
+    private void pegarChave(Chave e){
+        e.pegarChave();
+    }
+
+    private void entrarPorta(Porta p){
+        p.entrar();
+    }
+
+    private void colidirFisica(Entidade e){
         int distX = Math.abs((this.getX()+this.getLargura()/2) - (e.getX()+e.getLargura()/2));
         int distY = Math.abs((this.getY()+this.getAltura()/2) - (e.getY()+e.getAltura()/2));
         int distLargura = (int) this.getLargura()/2 + e.getLargura()/2;

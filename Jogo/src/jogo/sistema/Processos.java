@@ -10,12 +10,11 @@ public class Processos {
         //Frames
         Dormir.dormir();
 
-        ///COLISOES COM O JOGADOR
+        ///Colisoes com o Jogador
         for(Entidade e : Setup.entidades){
             if(!(e instanceof Jogador)){
-                if(e.getFisica() && Collide.collideEntidades(Setup.jogador, e)){
-                    Setup.jogador.colidirBloco(e);
-                }
+                boolean hit = Collide.collideEntidades(Setup.jogador, e);
+                if(hit){Setup.jogador.colidirComEntidade(e);}
             }
         }
     }

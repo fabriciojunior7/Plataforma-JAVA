@@ -1,8 +1,6 @@
 package jogo.sistema.fases;
 
-import jogo.logica.Bloco;
-import jogo.logica.Entidade;
-import jogo.logica.Jogador;
+import jogo.logica.*;
 import jogo.sistema.Setup;
 
 import java.io.FileInputStream;
@@ -19,7 +17,7 @@ public class Fase {
         //Variaveis Necessarias
         ArrayList<Entidade> faseFinal = new ArrayList<>();
         String faseCompleta = carregarFase(fase);
-        int x = -1, y = -1;
+        int x = -1, y = 0;
         Entidade e;
         char letra;
 
@@ -82,6 +80,8 @@ public class Fase {
     private static Entidade traducao(char letra, int x, int y){
         //Decodificando Letras
         if(letra == 'x'){return new Bloco(x, y);}
+        if(letra == 'p'){return new Porta(x, y);}
+        if(letra == 'c'){return new Chave(x, y);}
         else if(letra == 'j'){
             Jogador jogador = new Jogador(x, y);
             Setup.jogador = jogador;

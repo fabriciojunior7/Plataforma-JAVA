@@ -3,6 +3,7 @@ package jogo.sistema;
 import jogo.gui.Janela;
 import jogo.logica.Entidade;
 import jogo.logica.Jogador;
+import jogo.sistema.fases.Fase;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,11 @@ public class Setup {
 
     public static void faseInteira(ArrayList<Entidade> faseCompleta){
         entidades = faseCompleta;
+    }
+
+    public static void passarDeFase(){
+        faseAtual++;
+        entidades = Fase.gerarFase(faseAtual);
     }
 
 }
