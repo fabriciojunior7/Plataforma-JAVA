@@ -1,6 +1,7 @@
 package jogo.sistema;
 
 import jogo.logica.Entidade;
+import jogo.logica.Jogador;
 
 import java.awt.*;
 
@@ -24,8 +25,9 @@ public class Draw {
 
     private static void desenharEntidades(Graphics g){
         for(Entidade e : Setup.entidades){
-            e.desenhar(g);
+            if(!(e instanceof Jogador)){e.desenhar(g);}
         }
+        if(Setup.jogador != null){Setup.jogador.desenhar(g);}
     }
 
 }

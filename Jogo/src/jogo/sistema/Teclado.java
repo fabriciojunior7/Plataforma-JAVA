@@ -13,11 +13,11 @@ public class Teclado implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent key) {
-        Setup.jogador.botaoPressionado(key.getKeyChar());
+        Setup.jogador.botaoPressionado(key.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent key) {
-        Setup.jogador.botaoSolto(key.getKeyChar());
+        Setup.jogador.botaoSolto(key.getKeyCode());
     }
 }

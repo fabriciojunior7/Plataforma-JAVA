@@ -45,18 +45,18 @@ public class Jogador extends Entidade {
     }
 
     //METODOS
-    public void botaoPressionado(char key){
+    public void botaoPressionado(int key){
         //Eixo X
-        if(key == 'a'){this.ad[0] = true;}
-        else if(key == 'd'){this.ad[1] = true;}
+        if(key == 37 || key == 65){this.ad[0] = true;}
+        else if(key == 39 || key == 68){this.ad[1] = true;}
         //ACOES
-        if(key == 'w' || key == ' '){this.pular();}
+        if(key == 38 || key == 87 || key == 32){this.pular();}
     }
 
-    public void botaoSolto(char key){
+    public void botaoSolto(int key){
         //Eixo X
-        if(key == 'a'){this.ad[0] = false;}
-        else if(key == 'd'){this.ad[1] = false;}
+        if(key == 37 || key == 65){this.ad[0] = false;}
+        else if(key == 39 || key == 68){this.ad[1] = false;}
     }
 
     public void mover(){
