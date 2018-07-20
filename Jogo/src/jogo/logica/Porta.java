@@ -11,8 +11,8 @@ public class Porta extends Entidade{
 
     //CONSTRUTOR
     public Porta(int x, int y){
-        super(x*Setup.LADO, y*Setup.LADO, Setup.LADO, Setup.LADO, false);
-        this.cor = new Color(75, 30, 0);
+        super(x*Setup.LADO, y*Setup.LADO-Setup.LADO, Setup.LADO, Setup.LADO*2, false);
+        this.cor = new Color(150, 100, 0);
     }
 
     //METODOS
@@ -32,7 +32,7 @@ public class Porta extends Entidade{
 
     public void abrir(){
         this.aberta = true;
-        this.cor = new Color(150, 100, 0);
+        //this.cor = new Color(150, 100, 0);
     }
 
     public void entrar(){

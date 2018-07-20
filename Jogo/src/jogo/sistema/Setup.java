@@ -13,7 +13,7 @@ public class Setup {
     public static final int FRAMERATE = 60;
     public static final int LADO = 10;
     public static final int LARGURA = 900;
-    public static final int ALTURA = 703;
+    public static final int ALTURA = 702;
     public static final int LARGURAVERDADEIRA = LARGURA;
     public static final int ALTURAVERDADEIRA = ALTURA-22;
     public static final float GRAVIDADE = 0.4f;

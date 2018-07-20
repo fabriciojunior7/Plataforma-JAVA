@@ -1,11 +1,14 @@
 package jogo.sistema.fases;
 
 import jogo.logica.*;
+import jogo.logica.espinhos.EspinhoChao;
+import jogo.logica.espinhos.EspinhoDireita;
+import jogo.logica.espinhos.EspinhoEsquerda;
+import jogo.logica.espinhos.EspinhoTeto;
 import jogo.sistema.Setup;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -80,8 +83,14 @@ public class Fase {
     private static Entidade traducao(char letra, int x, int y){
         //Decodificando Letras
         if(letra == 'x'){return new Bloco(x, y);}
-        if(letra == 'p'){return new Porta(x, y);}
-        if(letra == 'c'){return new Chave(x, y);}
+        else if(letra == 'p'){return new Porta(x, y);}
+        else if(letra == 'c'){return new Chave(x, y);}
+        //Espinhos
+        else if(letra == 'A'){return new EspinhoChao(x, y);}
+        else if(letra == 'V'){return new EspinhoTeto(x, y);}
+        else if(letra == '>'){return new EspinhoEsquerda(x, y);}
+        else if(letra == '<'){return new EspinhoDireita(x, y);}
+        //Jogador
         else if(letra == 'j'){
             Jogador jogador = new Jogador(x, y);
             Setup.jogador = jogador;

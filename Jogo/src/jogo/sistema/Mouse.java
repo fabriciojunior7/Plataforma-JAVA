@@ -10,7 +10,7 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
     //METODOS OVERRIDE
     @Override
     public void mouseClicked(MouseEvent mouse) {
-        Setup.adicionarEntidade(new Bloco((int)(mouse.getX()/Setup.LADO), (int)((mouse.getY()-25)/Setup.LADO)));
+        //Setup.adicionarEntidade(new Bloco((int)(mouse.getX()/Setup.LADO), (int)((mouse.getY()-25)/Setup.LADO)));
     }
 
     @Override
