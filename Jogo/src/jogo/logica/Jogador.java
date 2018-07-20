@@ -1,10 +1,10 @@
 package jogo.logica;
 
-import jogo.Main;
+import jogo.logica.CamaElastica.CamaElastica;
+import jogo.logica.CamaElastica.CamaElasticaChao;
+import jogo.logica.CamaElastica.CamaElasticaParede;
 import jogo.logica.espinhos.Espinho;
-import jogo.logica.espinhos.EspinhoChao;
 import jogo.sistema.Collide;
-import jogo.sistema.Dormir;
 import jogo.sistema.Setup;
 
 import java.awt.*;
@@ -70,19 +70,20 @@ public class Jogador extends Entidade {
 
     public void atualizarVelocidades(){
         //Eixo X - Esquerda (ACELERANDO)
-        if(this.ad[0] && Math.abs(this.velocidadeX) > Math.abs(this.velocidadeMaxX)){
+        /*if(this.ad[0] && !this.ad[1] && Math.abs(this.velocidadeX) > Math.abs(this.velocidadeMaxX)){
             this.velocidadeX = -this.velocidadeMaxX;
-        }
-        else if(this.ad[0] && Math.abs(this.velocidadeX) < Math.abs(this.velocidadeMaxX)){
+        }*/
+        if(this.ad[0] && !this.ad[1] && Math.abs(this.velocidadeX) < Math.abs(this.velocidadeMaxX)){
             this.velocidadeX -= this.aceleracao;
         }
         //Eixo X - Direita (ACELERANDO)
-        if(this.ad[1] && Math.abs(this.velocidadeX) > Math.abs(this.velocidadeMaxX)){
+        /*if(this.ad[1] && !this.ad[0] && Math.abs(this.velocidadeX) > Math.abs(this.velocidadeMaxX)){
             this.velocidadeX = this.velocidadeMaxX;
-        }
-        else if(this.ad[1] && Math.abs(this.velocidadeX) < Math.abs(this.velocidadeMaxX)){
+        }*/
+        if(this.ad[1] && !this.ad[0] && Math.abs(this.velocidadeX) < Math.abs(this.velocidadeMaxX)){
             this.velocidadeX += this.aceleracao;
         }
+
         //Eixo X - (DESACELERACAO)
         if((!this.ad[0] && !this.ad[1]) || (this.ad[0] && this.ad[1]) || (this.ad[0] && this.velocidadeX > 0) || (this.ad[1] && this.velocidadeX < 0)){
             if(Math.abs(this.velocidadeX) > Math.abs(this.desaceleracao)){
@@ -113,8 +114,6 @@ public class Jogador extends Entidade {
 
     private void pular(){
         if(!this.caindo){this.velocidadeY = this.forcaPulo; this.caindo = true;}
-        //this.velocidadeY = this.forcaPulo;
-        //this.caindo = true;
     }
 
     public void colidirComEntidade(Entidade e){
@@ -137,7 +136,14 @@ public class Jogador extends Entidade {
     }
 
     private void pularCamaElastica(CamaElastica c){
-        if(this.caindo && this.velocidadeY >= 0){this.velocidadeY = c.getElasticidade();}
+        if(c instanceof CamaElasticaChao){
+            if(this.caindo && this.velocidadeY >= 0){this.velocidadeY = c.getElasticidade();}
+        }
+        else if(c instanceof CamaElasticaParede){
+            this.ad = new boolean[]{false, false};
+            if(this.x < c.getX()){this.velocidadeX = -c.getElasticidade();}
+            else{this.velocidadeX = c.getElasticidade();}
+        }
     }
 
     private void morrer(){

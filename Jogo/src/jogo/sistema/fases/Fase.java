@@ -1,6 +1,8 @@
 package jogo.sistema.fases;
 
 import jogo.logica.*;
+import jogo.logica.CamaElastica.CamaElasticaChao;
+import jogo.logica.CamaElastica.CamaElasticaParede;
 import jogo.logica.espinhos.EspinhoChao;
 import jogo.logica.espinhos.EspinhoDireita;
 import jogo.logica.espinhos.EspinhoEsquerda;
@@ -85,7 +87,8 @@ public class Fase {
         if(letra == 'x'){return new Bloco(x, y);}
         else if(letra == 'p'){return new Porta(x, y);}
         else if(letra == 'c'){return new Chave(x, y);}
-        else if(letra == '-'){return new CamaElastica(x, y);}
+        else if(letra == '-'){return new CamaElasticaChao(x, y);}
+        else if(letra == '|'){return new CamaElasticaParede(x, y);}
         //Espinhos
         else if(letra == 'A'){return new EspinhoChao(x, y);}
         else if(letra == 'V'){return new EspinhoTeto(x, y);}
