@@ -85,6 +85,7 @@ public class Fase {
         if(letra == 'x'){return new Bloco(x, y);}
         else if(letra == 'p'){return new Porta(x, y);}
         else if(letra == 'c'){return new Chave(x, y);}
+        else if(letra == '-'){return new CamaElastica(x, y);}
         //Espinhos
         else if(letra == 'A'){return new EspinhoChao(x, y);}
         else if(letra == 'V'){return new EspinhoTeto(x, y);}

@@ -41,4 +41,8 @@ public class Setup {
         entidades = Fase.gerarFase(faseAtual);
     }
 
+    public static void resetarFase(){
+        entidades = Fase.gerarFase(faseAtual);
+    }
+
 }

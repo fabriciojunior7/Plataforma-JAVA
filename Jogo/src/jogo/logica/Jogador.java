@@ -1,6 +1,8 @@
 package jogo.logica;
 
 import jogo.Main;
+import jogo.logica.espinhos.Espinho;
+import jogo.logica.espinhos.EspinhoChao;
 import jogo.sistema.Collide;
 import jogo.sistema.Dormir;
 import jogo.sistema.Setup;
@@ -117,16 +119,30 @@ public class Jogador extends Entidade {
 
     public void colidirComEntidade(Entidade e){
         if(e.getFisica()){this.colidirFisica(e);}
-        else if(e instanceof Chave){this.pegarChave((Chave) e);}
+
+        if(e instanceof Chave){this.pegarChave((Chave) e);}
         else if(e instanceof Porta){this.entrarPorta((Porta) e);}
+        else if(e instanceof CamaElastica){this.pularCamaElastica((CamaElastica) e);}
+
+
+        else if(e instanceof Espinho){this.morrer();}
     }
 
-    private void pegarChave(Chave e){
-        e.pegarChave();
+    private void pegarChave(Chave c){
+        c.pegarChave();
     }
 
     private void entrarPorta(Porta p){
         p.entrar();
+    }
+
+    private void pularCamaElastica(CamaElastica c){
+        if(this.caindo && this.velocidadeY >= 0){this.velocidadeY = c.getElasticidade();}
+    }
+
+    private void morrer(){
+        System.out.println("Perdeu!");
+        Setup.resetarFase();
     }
 
     private void colidirFisica(Entidade e){

@@ -14,12 +14,12 @@ public class Draw {
     }
 
     private static void grade(Graphics g){
-        g.setColor(new Color(255, 255, 255, 25));
+        g.setColor(new Color(255, 255, 255, 20));
         for(int i=0; i<Setup.LARGURA/10; i++){
-            g.drawLine(i*10, 0, i*10, Setup.ALTURA);
+            g.drawLine(i*Setup.LADO, 0, i*Setup.LADO, Setup.ALTURA);
         }
         for(int i=0; i<Setup.ALTURA/10; i++){
-            g.drawLine(0, i*10, Setup.LARGURA, i*10);
+            g.drawLine(0, i*Setup.LADO, Setup.LARGURA, i*Setup.LADO);
         }
     }
 
