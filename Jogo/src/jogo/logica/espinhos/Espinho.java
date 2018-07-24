@@ -14,7 +14,7 @@ public class Espinho extends Entidade {
 
     //CONSTRUTOR
     public Espinho(int x, int y, int[] xPoly, int[] yPoly){
-        super(x*Setup.LADO+1, y*Setup.LADO+1, Setup.LADO-2, Setup.LADO-2, Color.red,true);
+        super(x*Setup.LADO+1, y*Setup.LADO+1, Setup.LADO-2, Setup.LADO-2, Color.red,false);
         this.xPoly = xPoly;
         this.yPoly = yPoly;
         this.corpo = new Polygon(xPoly, yPoly, xPoly.length);

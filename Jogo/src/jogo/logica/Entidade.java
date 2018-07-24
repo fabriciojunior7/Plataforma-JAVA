@@ -90,7 +90,7 @@ public class Entidade {
         else if(this.x > Setup.LARGURAVERDADEIRA-this.largura){this.x = Setup.LARGURAVERDADEIRA-this.largura;}
         //Eixo Y
         if(this.y < 0){this.y = 0;}
-        else if(this.y > Setup.ALTURAVERDADEIRA-this.altura){this.y = Setup.ALTURAVERDADEIRA-this.altura;}
+        else if(this.y > Setup.ALTURA-this.altura){this.y = Setup.ALTURA-this.altura;}
     }
 
     //METODOS ESPECIAIS

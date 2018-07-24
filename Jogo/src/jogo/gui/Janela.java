@@ -1,9 +1,6 @@
 package jogo.gui;
 
-import jogo.sistema.Dormir;
-import jogo.sistema.Draw;
-import jogo.sistema.Mouse;
-import jogo.sistema.Teclado;
+import jogo.sistema.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +15,7 @@ public class Janela extends JPanel {
     private int ALTURA;
     private Teclado teclado;
     private Mouse mouse;
+    private Dimension dimensoes;
 
     //CONSTRUTOR
     public Janela(int largura, int altura){
@@ -39,6 +37,7 @@ public class Janela extends JPanel {
         this.tela.addMouseListener(this.mouse);
         this.tela.addMouseMotionListener(this.mouse);
         this.tela.addMouseWheelListener(this.mouse);
+        this.dimensoes = Toolkit.getDefaultToolkit().getScreenSize();
     }
 
     //METODOS OVERRIDE
@@ -49,6 +48,15 @@ public class Janela extends JPanel {
         g.fillRect(0,0, this.LARGURA, this.ALTURA);
         Draw.draw(g);
         this.repaint();
+    }
+
+    //METODOS ESPECIAIS
+    public double getLarguraTelaMonitor(){
+        return this.dimensoes.getWidth();
+    }
+
+    public double getAlturaTelaMonitor(){
+        return this.dimensoes.getHeight();
     }
 
 }

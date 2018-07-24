@@ -22,7 +22,7 @@ public class Fase {
         //Variaveis Necessarias
         ArrayList<Entidade> faseFinal = new ArrayList<>();
         String faseCompleta = carregarFase(fase);
-        int x = -1, y = 0;
+        int x = 0, y = 0;
         Entidade e;
         char letra;
 
@@ -87,6 +87,8 @@ public class Fase {
         if(letra == 'x'){return new Bloco(x, y);}
         else if(letra == 'p'){return new Porta(x, y);}
         else if(letra == 'c'){return new Chave(x, y);}
+        else if(letra == 'O'){return new Portal(x, y);}
+        //Camas Elasticas
         else if(letra == '-'){return new CamaElasticaChao(x, y);}
         else if(letra == '|'){return new CamaElasticaParede(x, y);}
         //Espinhos

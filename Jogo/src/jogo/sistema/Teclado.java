@@ -14,6 +14,10 @@ public class Teclado implements KeyListener {
     @Override
     public void keyPressed(KeyEvent key) {
         Setup.jogador.botaoPressionado(key.getKeyCode());
+
+        //METODOS TEMPORARIOS
+        if(key.getKeyChar() == '<'){Setup.CHEATvoltarFase();}
+        else if(key.getKeyChar() == '>'){Setup.CHEATavancarFase();}
     }
 
     @Override

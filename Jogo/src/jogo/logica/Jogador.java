@@ -14,7 +14,7 @@ public class Jogador extends Entidade {
     //ATRIBUTOS
     protected boolean[] ad;
     protected float forcaPulo, velocidadeMaxX, velocidadeMaxY, velocidadeX, velocidadeY, aceleracao, desaceleracao;
-    protected boolean caindo;
+    protected boolean caindo, colidindoPortal;
     protected Entidade checadorDireita, checadorEsquerda;
 
     //CONSTRUTOR
@@ -33,6 +33,7 @@ public class Jogador extends Entidade {
         this.checadorDireita = new Entidade(this.x+this.largura-7, this.y+this.altura, 1, 5, false);
         this.checadorEsquerda.setCor(Color.red);
         this.checadorDireita.setCor(Color.red);
+        this.colidindoPortal = false;
     }
 
     //METODOS OVERRIDE
@@ -117,11 +118,13 @@ public class Jogador extends Entidade {
     }
 
     public void colidirComEntidade(Entidade e){
+        //this.colidindoPortal = false;
         if(e.getFisica()){this.colidirFisica(e);}
 
         if(e instanceof Chave){this.pegarChave((Chave) e);}
         else if(e instanceof Porta){this.entrarPorta((Porta) e);}
         else if(e instanceof CamaElastica){this.pularCamaElastica((CamaElastica) e);}
+        else if(e instanceof Portal){this.atravessarPortal((Portal) e);}
 
 
         else if(e instanceof Espinho){this.morrer();}
@@ -133,6 +136,10 @@ public class Jogador extends Entidade {
 
     private void entrarPorta(Porta p){
         p.entrar();
+    }
+
+    private void atravessarPortal(Portal p){
+        p.atravessarPortal();
     }
 
     private void pularCamaElastica(CamaElastica c){
@@ -188,6 +195,20 @@ public class Jogador extends Entidade {
         this.checadorDireita.setY(this.y+this.altura);
         //this.checadorDireita.desenhar(g);
         //this.checadorEsquerda.desenhar(g);
+    }
+
+    public void teletransporta(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    //METODOS ESPECIAIS
+    public boolean getColidindoPortal(){
+        return this.colidindoPortal;
+    }
+
+    public void setColidindoPortal(boolean colidindoPortal){
+        this.colidindoPortal = colidindoPortal;
     }
 
 }

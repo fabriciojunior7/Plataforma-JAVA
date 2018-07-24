@@ -2,7 +2,7 @@
 
 Fabricio Junior
 Inicio: 09/07/2018
-Ultima Atualizacao: 20/07/2018
+Ultima Atualizacao: 24/07/2018
 
  */
 
@@ -14,8 +14,6 @@ public class Main {
 
     public static void main(String args[]){
         Facade facade = new Facade();
-        facade.novaJanela();
-
         facade.rodarJogo();
     }
 

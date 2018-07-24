@@ -15,10 +15,12 @@ public class Draw {
 
     private static void grade(Graphics g){
         g.setColor(new Color(255, 255, 255, 20));
-        for(int i=0; i<Setup.LARGURA/10; i++){
+        //Colunas
+        for(int i=0; i<Setup.LARGURA/Setup.LADO ; i++){
             g.drawLine(i*Setup.LADO, 0, i*Setup.LADO, Setup.ALTURA);
         }
-        for(int i=0; i<Setup.ALTURA/10; i++){
+        //Linhas
+        for(int i=0; i<Setup.ALTURA/Setup.LADO; i++){
             g.drawLine(0, i*Setup.LADO, Setup.LARGURA, i*Setup.LADO);
         }
     }
