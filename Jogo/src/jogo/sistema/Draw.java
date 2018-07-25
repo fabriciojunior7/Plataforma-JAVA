@@ -9,7 +9,7 @@ public class Draw {
 
     //METODOS ESTATICOS
     public static void draw(Graphics g){
-        grade(g);
+        //grade(g);
         desenharEntidades(g);
     }
 

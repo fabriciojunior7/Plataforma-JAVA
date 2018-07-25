@@ -32,7 +32,7 @@ public class Porta extends Entidade{
 
     public void abrir(){
         this.aberta = true;
-        //this.cor = new Color(150, 100, 0);
+        // this.cor = new Color(150, 100, 0);
     }
 
     public void entrar(){
