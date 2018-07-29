@@ -19,7 +19,9 @@ public class Setup {
     public static int ALTURAVERDADEIRA = ALTURA-22;
     public static final float GRAVIDADE = 0.4f;
     public static int faseAtual = 1;
-    public static float tempoInicial = System.currentTimeMillis();
+    public static boolean tempoAtivo = false;
+    public static long tempoInicial = System.currentTimeMillis();
+    public static float ultimoTempo = 0;
 
     //OBJETOS GLOBAIS
     public static Janela janela = new Janela(LARGURAVERDADEIRA, ALTURAVERDADEIRA);
@@ -41,7 +43,7 @@ public class Setup {
     public static void passarDeFase(){
         faseAtual++;
         entidades = Fase.gerarFase(faseAtual);
-        //System.out.println(tempoTotal());
+        System.out.println(tempoTotal());
     }
 
     public static void resetarFase(){
@@ -50,8 +52,19 @@ public class Setup {
 
     private static float tempoTotal(){
         float tempoGasto = System.currentTimeMillis() - tempoInicial;
+        tempoAtivo = false;
+        ultimoTempo = tempoGasto;
+        return tempoGasto/1000;
+    }
+
+    public static void iniciarTempo(){
         tempoInicial = System.currentTimeMillis();
-        return tempoGasto;
+        tempoAtivo = true;
+    }
+
+    public static float tempoAtual(){
+        float tempoGasto = System.currentTimeMillis() - tempoInicial;
+        return tempoGasto/1000;
     }
 
     //METODOS TEMPORARIOS
@@ -62,6 +75,7 @@ public class Setup {
     public static void CHEATvoltarFase(){
         faseAtual--;
         entidades = Fase.gerarFase(faseAtual);
+        tempoTotal();
     }
 
 }

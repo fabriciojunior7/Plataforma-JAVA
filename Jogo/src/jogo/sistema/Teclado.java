@@ -15,6 +15,9 @@ public class Teclado implements KeyListener {
     public void keyPressed(KeyEvent key) {
         Setup.jogador.botaoPressionado(key.getKeyCode());
 
+        //ATIVAR TEMPO
+        if(!Setup.tempoAtivo){Setup.iniciarTempo();}
+
         //METODOS TEMPORARIOS
         if(key.getKeyChar() == '<'){Setup.CHEATvoltarFase();}
         else if(key.getKeyChar() == '>'){Setup.CHEATavancarFase();}

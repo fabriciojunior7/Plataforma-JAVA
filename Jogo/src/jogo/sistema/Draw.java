@@ -11,6 +11,7 @@ public class Draw {
     public static void draw(Graphics g){
         //grade(g);
         desenharEntidades(g);
+        textos(g);
     }
 
     private static void grade(Graphics g){
@@ -30,6 +31,13 @@ public class Draw {
             if(!(e instanceof Jogador)){e.desenhar(g);}
         }
         if(Setup.jogador != null){Setup.jogador.desenhar(g);}
+    }
+
+    private static void textos(Graphics g){
+        //TEMPO
+        g.setColor(Color.green);
+        if(Setup.tempoAtivo){g.drawString(Setup.tempoAtual()+"s", 3, 15);}
+        else{g.drawString("0s", 3, 15);}
     }
 
 }
