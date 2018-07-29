@@ -41,6 +41,7 @@ public class Fase {
         }
 
         //Retorno da Fase Completa
+        Setup.jogador.setPortais(faseFinal);
         return faseFinal;
 
     }

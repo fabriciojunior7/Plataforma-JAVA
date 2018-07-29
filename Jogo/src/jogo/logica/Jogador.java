@@ -8,6 +8,7 @@ import jogo.sistema.Collide;
 import jogo.sistema.Setup;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Jogador extends Entidade {
 
@@ -16,6 +17,7 @@ public class Jogador extends Entidade {
     protected float forcaPulo, velocidadeMaxX, velocidadeMaxY, velocidadeX, velocidadeY, aceleracao, desaceleracao;
     protected boolean caindo, colidindoPortal;
     protected Entidade checadorDireita, checadorEsquerda;
+    protected ArrayList<Portal> portais;
 
     //CONSTRUTOR
     public Jogador(int x, int y){
@@ -33,6 +35,7 @@ public class Jogador extends Entidade {
         this.checadorDireita = new Entidade(this.x+this.largura-7, this.y+this.altura, 1, 5, false);
         this.checadorEsquerda.setCor(Color.red);
         this.checadorDireita.setCor(Color.red);
+        this.portais = new ArrayList<>();
         this.colidindoPortal = false;
     }
 
@@ -124,7 +127,7 @@ public class Jogador extends Entidade {
         if(e instanceof Chave){this.pegarChave((Chave) e);}
         else if(e instanceof Porta){this.entrarPorta((Porta) e);}
         else if(e instanceof CamaElastica){this.pularCamaElastica((CamaElastica) e);}
-        else if(e instanceof Portal){this.atravessarPortal((Portal) e);}
+        else if(e instanceof Portal && !this.colidindoPortal){this.atravessarPortal();}
 
 
         else if(e instanceof Espinho){this.morrer();}
@@ -138,8 +141,20 @@ public class Jogador extends Entidade {
         p.entrar();
     }
 
-    private void atravessarPortal(Portal p){
-        p.atravessarPortal();
+    public void checarPortais(){
+        if(this.portais.size() > 0){
+            boolean hit1 = Collide.collideEntidades(this, this.portais.get(0));
+            boolean hit2 = Collide.collideEntidades(this, this.portais.get(1));
+            if(hit1 || hit2){this.colidindoPortal = true;}
+            else{this.colidindoPortal = false;}
+        }
+    }
+
+    private void atravessarPortal(){
+        boolean hit1 = Collide.collideEntidades(this, this.portais.get(0));
+        boolean hit2 = Collide.collideEntidades(this, this.portais.get(1));
+        if(hit1){this.portais.get(0).atravessarPortal();}
+        else if(hit2){this.portais.get(1).atravessarPortal();}
     }
 
     private void pularCamaElastica(CamaElastica c){
@@ -200,6 +215,7 @@ public class Jogador extends Entidade {
     public void teletransporta(int x, int y){
         this.x = x;
         this.y = y;
+        this.colidindoPortal = true;
     }
 
     //METODOS ESPECIAIS
@@ -209,6 +225,14 @@ public class Jogador extends Entidade {
 
     public void setColidindoPortal(boolean colidindoPortal){
         this.colidindoPortal = colidindoPortal;
+    }
+
+    public void setPortais(ArrayList<Entidade> fase){
+        int j = 0;
+        for(Entidade e : fase){
+            if(e instanceof  Portal){this.portais.add((Portal) e);}
+            if(j > 1){break;}
+        }
     }
 
 }

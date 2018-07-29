@@ -17,6 +17,7 @@ public class Processos {
                 if(hit){Setup.jogador.colidirComEntidade(e);}
             }
         }
+        Setup.jogador.checarPortais();
     }
 
 }

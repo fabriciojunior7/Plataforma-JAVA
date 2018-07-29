@@ -44,8 +44,7 @@ public class Portal extends Entidade {
 
         //Teletransportar Jogador
         if(!Setup.jogador.getColidindoPortal()){
-            Setup.jogador.setColidindoPortal(true);
-            Setup.jogador.teletransporta(outroPortal.getX(), outroPortal.getY());
+            Setup.jogador.teletransporta(outroPortal.getX(), outroPortal.getY()-5);
         }
     }
 
