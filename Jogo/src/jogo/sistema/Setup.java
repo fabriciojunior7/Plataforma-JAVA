@@ -46,7 +46,7 @@ public class Setup {
     }
 
     public static void passarDeFase(){
-        replays.add(new ReplayGuy(faseAtual, gravacao));
+        replays.add(new ReplayGuy(faseAtual, gravacao, replaysDaFase.size()+1));
 
         faseAtual++;
 
