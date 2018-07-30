@@ -11,6 +11,7 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
     @Override
     public void mouseClicked(MouseEvent mouse) {
         //Setup.adicionarEntidade(new Bloco((int)(mouse.getX()/Setup.LADO), (int)((mouse.getY()-25)/Setup.LADO)));
+        Setup.jogador.teletransporta(mouse.getX()-5, mouse.getY()-32);
     }
 
     @Override

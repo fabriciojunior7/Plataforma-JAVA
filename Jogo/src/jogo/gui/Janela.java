@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class Janela extends JPanel {
 
     //ATRIBUTOS
-    private JFrame tela;
+    public JFrame tela;
     private int LARGURA;
     private int ALTURA;
     private Teclado teclado;

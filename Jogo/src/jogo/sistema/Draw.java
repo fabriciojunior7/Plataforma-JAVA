@@ -38,6 +38,8 @@ public class Draw {
         g.setColor(Color.green);
         if(Setup.tempoAtivo){g.drawString(Setup.tempoAtual()+"s", 3, 15);}
         else{g.drawString("0s", 3, 15);}
+
+        Setup.janela.tela.setTitle("MARIO JAVA - #"+Setup.faseAtual+" ("+Setup.tempoAtual()+"s)");
     }
 
 }
