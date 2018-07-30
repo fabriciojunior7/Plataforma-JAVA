@@ -2,6 +2,7 @@ package jogo.sistema;
 
 import jogo.logica.Entidade;
 import jogo.logica.Jogador;
+import jogo.logica.ReplayGuy;
 
 import java.awt.*;
 
@@ -27,6 +28,10 @@ public class Draw {
     }
 
     private static void desenharEntidades(Graphics g){
+        for(ReplayGuy r : Setup.replaysDaFase){
+            r.desenhar(g);
+        }
+
         for(Entidade e : Setup.entidades){
             if(!(e instanceof Jogador)){e.desenhar(g);}
         }
@@ -39,7 +44,13 @@ public class Draw {
         if(Setup.tempoAtivo){g.drawString(Setup.tempoAtual()+"s", 3, 15);}
         else{g.drawString("0s", 3, 15);}
 
-        Setup.janela.tela.setTitle("MARIO JAVA - #"+Setup.faseAtual+" ("+Setup.tempoAtual()+"s)");
+        //TITULO
+        if(Setup.tempoAtivo){
+            Setup.janela.tela.setTitle("MARIO JAVA - #"+Setup.faseAtual+" ("+Setup.tempoAtual()+"s )");
+        }
+        else{
+            Setup.janela.tela.setTitle("MARIO JAVA - #"+Setup.faseAtual);
+        }
     }
 
 }

@@ -3,6 +3,7 @@ package jogo.sistema;
 import jogo.gui.Janela;
 import jogo.logica.Entidade;
 import jogo.logica.Jogador;
+import jogo.logica.ReplayGuy;
 import jogo.sistema.fases.Fase;
 
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ public class Setup {
     public static long tempoInicial = System.currentTimeMillis();
     public static float ultimoTempo = 0;
 
+    public static ArrayList<int[]> gravacao = new ArrayList<>();
+    public static ArrayList<ReplayGuy> replays = new ArrayList<>();
+    public static ArrayList<ReplayGuy> replaysDaFase = new ArrayList<>();
+
     //OBJETOS GLOBAIS
     public static Janela janela = new Janela(LARGURAVERDADEIRA, ALTURAVERDADEIRA);
     public static Jogador jogador;
@@ -41,7 +46,11 @@ public class Setup {
     }
 
     public static void passarDeFase(){
+        replays.add(new ReplayGuy(faseAtual, gravacao));
+
         faseAtual++;
+
+        resetarReplays();
         entidades = Fase.gerarFase(faseAtual);
         System.out.println(tempoTotal());
     }
@@ -67,13 +76,30 @@ public class Setup {
         return tempoGasto/1000;
     }
 
+    public static void resetarReplays(){
+        gravacao = new ArrayList<>();
+        replaysDaFase = new ArrayList<>();
+        for(ReplayGuy r: replays){
+            if(r.getFase() == faseAtual){
+                replaysDaFase.add(r);
+            }
+        }
+        for(ReplayGuy r : replaysDaFase){
+            r.resetar();
+        }
+    }
+
     //METODOS TEMPORARIOS
     public static void CHEATavancarFase(){
-        passarDeFase();
+        faseAtual++;
+        resetarReplays();
+        entidades = Fase.gerarFase(faseAtual);
+        tempoTotal();
     }
 
     public static void CHEATvoltarFase(){
         faseAtual--;
+        resetarReplays();
         entidades = Fase.gerarFase(faseAtual);
         tempoTotal();
     }

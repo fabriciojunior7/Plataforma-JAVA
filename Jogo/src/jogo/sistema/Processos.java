@@ -2,6 +2,7 @@ package jogo.sistema;
 
 import jogo.logica.Entidade;
 import jogo.logica.Jogador;
+import jogo.logica.ReplayGuy;
 
 public class Processos {
 
@@ -18,6 +19,15 @@ public class Processos {
             }
         }
         Setup.jogador.checarPortais();
+
+        //REPLAY
+        if(Setup.tempoAtivo){
+            Setup.gravacao.add(new int[]{Setup.jogador.getX(), Setup.jogador.getY()});
+            for(ReplayGuy r : Setup.replaysDaFase){
+                r.mover();
+            }
+        }
+
     }
 
 }

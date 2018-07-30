@@ -1,9 +1,6 @@
 package jogo.sistema;
 
-import jogo.gui.Janela;
 import jogo.sistema.fases.Fase;
-
-import java.util.ArrayList;
 
 public class Facade {
 
