@@ -1,9 +1,7 @@
 package jogo.sistema;
 
 import jogo.gui.Janela;
-import jogo.logica.Entidade;
-import jogo.logica.Jogador;
-import jogo.logica.ReplayGuy;
+import jogo.logica.*;
 import jogo.sistema.fases.Fase;
 
 import java.util.ArrayList;
@@ -28,6 +26,9 @@ public class Setup {
     public static ArrayList<ReplayGuy> replays = new ArrayList<>();
     public static ArrayList<ReplayGuy> replaysDaFase = new ArrayList<>();
 
+    //public static ArrayList<CheckPoint> checkPoints = new ArrayList<>();
+    public static CheckPoint checkPointAtual = null;
+
     //OBJETOS GLOBAIS
     public static Janela janela = new Janela(LARGURAVERDADEIRA, ALTURAVERDADEIRA);
     public static Jogador jogador;
@@ -47,9 +48,8 @@ public class Setup {
 
     public static void passarDeFase(){
         replays.add(new ReplayGuy(faseAtual, gravacao, replaysDaFase.size()+1));
-
+        checkPointAtual = null;
         faseAtual++;
-
         resetarReplays();
         entidades = Fase.gerarFase(faseAtual);
         System.out.println(tempoTotal());
@@ -57,6 +57,15 @@ public class Setup {
 
     public static void resetarFase(){
         entidades = Fase.gerarFase(faseAtual);
+        if(checkPointAtual != null){
+            jogador.setX(checkPointAtual.getX()-4);
+            jogador.setY(checkPointAtual.getY());
+            if(checkPointAtual.getComChave()){
+                for(Entidade e : entidades){
+                    if(e instanceof Chave){((Chave) e).pegarChave(); break;}
+                }
+            }
+        }
     }
 
     private static float tempoTotal(){
@@ -89,6 +98,11 @@ public class Setup {
         }
     }
 
+    public static void novoCheckPoint(CheckPoint c){
+        checkPointAtual = c;
+        System.out.println(c);
+    }
+
     //METODOS TEMPORARIOS
     public static void CHEATavancarFase(){
         faseAtual++;
@@ -99,6 +113,7 @@ public class Setup {
 
     public static void CHEATvoltarFase(){
         faseAtual--;
+        checkPointAtual = null;
         resetarReplays();
         entidades = Fase.gerarFase(faseAtual);
         tempoTotal();

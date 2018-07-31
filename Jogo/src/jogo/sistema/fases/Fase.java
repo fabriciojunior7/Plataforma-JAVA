@@ -89,6 +89,7 @@ public class Fase {
         else if(letra == 'p'){return new Porta(x, y);}
         else if(letra == 'c'){return new Chave(x, y);}
         else if(letra == 'O'){return new Portal(x, y);}
+        else if(letra == '!'){return new CheckPoint(x, y);}
         //Camas Elasticas
         else if(letra == '-'){return new CamaElasticaChao(x, y);}
         else if(letra == '|'){return new CamaElasticaParede(x, y);}

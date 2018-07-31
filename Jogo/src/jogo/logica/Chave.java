@@ -31,11 +31,9 @@ public class Chave extends Entidade {
     }
 
     public void pegarChave(){
-        int checar = 0;
         for(int i=0; i<Setup.entidades.size(); i++){
-            if(Setup.entidades.get(i) instanceof Chave){((Chave)(Setup.entidades.get(i))).coletar(); checar++;}
-            else if(Setup.entidades.get(i) instanceof Porta){((Porta) Setup.entidades.get(i)).abrir(); checar++;}
-            if(checar >= 2){break;}
+            if(Setup.entidades.get(i) instanceof Chave){((Chave)(Setup.entidades.get(i))).coletar();}
+            else if(Setup.entidades.get(i) instanceof Porta){((Porta) Setup.entidades.get(i)).abrir();}
         }
     }
 

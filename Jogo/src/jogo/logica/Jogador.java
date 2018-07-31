@@ -121,16 +121,21 @@ public class Jogador extends Entidade {
     }
 
     public void colidirComEntidade(Entidade e){
-        //this.colidindoPortal = false;
         if(e.getFisica()){this.colidirFisica(e);}
 
         if(e instanceof Chave){this.pegarChave((Chave) e);}
         else if(e instanceof Porta){this.entrarPorta((Porta) e);}
         else if(e instanceof CamaElastica){this.pularCamaElastica((CamaElastica) e);}
         else if(e instanceof Portal && !this.colidindoPortal){this.atravessarPortal();}
+        else if(e instanceof CheckPoint && !((CheckPoint) e).getChecado()){this.checkPoint((CheckPoint) e);}
 
 
         else if(e instanceof Espinho){this.morrer();}
+    }
+
+    private void checkPoint(CheckPoint c){
+        c.checar();
+        Setup.novoCheckPoint(c);
     }
 
     private void pegarChave(Chave c){
@@ -171,6 +176,11 @@ public class Jogador extends Entidade {
     private void morrer(){
         System.out.println("Perdeu!");
         Setup.resetarFase();
+        if(Setup.checkPointAtual != null){
+            for(Entidade e : Setup.entidades){
+                if(e instanceof Porta && Setup.checkPointAtual.getComChave()){((Porta) e).abrir();}
+            }
+        }
     }
 
     private void colidirFisica(Entidade e){
