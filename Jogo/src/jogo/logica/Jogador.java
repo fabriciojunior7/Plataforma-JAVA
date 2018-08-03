@@ -1,8 +1,8 @@
 package jogo.logica;
 
-import jogo.logica.CamaElastica.CamaElastica;
-import jogo.logica.CamaElastica.CamaElasticaChao;
-import jogo.logica.CamaElastica.CamaElasticaParede;
+import jogo.logica.camaselasticas.CamaElastica;
+import jogo.logica.camaselasticas.CamaElasticaChao;
+import jogo.logica.camaselasticas.CamaElasticaParede;
 import jogo.logica.espinhos.Espinho;
 import jogo.sistema.Collide;
 import jogo.sistema.Setup;
@@ -123,7 +123,7 @@ public class Jogador extends Entidade {
     public void colidirComEntidade(Entidade e){
         if(e.getFisica()){this.colidirFisica(e);}
 
-        if(e instanceof Chave){this.pegarChave((Chave) e);}
+        if(e instanceof Chave && !((Chave) e).isColetado()){this.pegarChave((Chave) e);}
         else if(e instanceof Porta){this.entrarPorta((Porta) e);}
         else if(e instanceof CamaElastica){this.pularCamaElastica((CamaElastica) e);}
         else if(e instanceof Portal && !this.colidindoPortal){this.atravessarPortal();}

@@ -1,8 +1,8 @@
 package jogo.sistema.fases;
 
 import jogo.logica.*;
-import jogo.logica.CamaElastica.CamaElasticaChao;
-import jogo.logica.CamaElastica.CamaElasticaParede;
+import jogo.logica.camaselasticas.CamaElasticaChao;
+import jogo.logica.camaselasticas.CamaElasticaParede;
 import jogo.logica.espinhos.EspinhoChao;
 import jogo.logica.espinhos.EspinhoDireita;
 import jogo.logica.espinhos.EspinhoEsquerda;

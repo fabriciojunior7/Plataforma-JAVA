@@ -39,4 +39,9 @@ public class Chave extends Entidade {
 
     private void coletar(){this.coletado = true;}
 
+    //METODOS ESPECIAIS
+    public boolean isColetado(){
+        return this.coletado;
+    }
+
 }
